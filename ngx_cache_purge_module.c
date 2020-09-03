@@ -1531,7 +1531,7 @@ ngx_http_cache_purge_send_response(ngx_http_request_t *r) {
     r->headers_out.content_type.len = resp_ct_size - 1;
     r->headers_out.content_type.data = (u_char *) resp_ct;
 
-    resp_tmpl_len = body_len + key[0].len + r->cache->file.name.len ;
+    resp_tmpl_len = body_len + key[0].len;
 
     buf = ngx_pcalloc(r->pool, resp_tmpl_len);
     if (buf == NULL) {
@@ -1539,12 +1539,12 @@ ngx_http_cache_purge_send_response(ngx_http_request_t *r) {
     }
 
     //p = ngx_snprintf(buf, resp_tmpl_len, resp_body , buf_keydata, r->cache->file.name.data);
-    p = ngx_snprintf(buf, resp_tmpl_len, resp_body , buf_keydata, buf_keydata);
+    p = ngx_snprintf(buf, resp_tmpl_len, resp_body, buf_keydata, buf_keydata);
     if (p == NULL) {
         return NGX_HTTP_INTERNAL_SERVER_ERROR;
     }
 
-    len = body_len + key[0].len + r->cache->file.name.len;
+    len = body_len + key[0].len;
 
     r->headers_out.status = NGX_HTTP_OK;
     r->headers_out.content_length_n = len;
